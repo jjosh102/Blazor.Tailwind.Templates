@@ -4,6 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <TailwindCssInput>wwwroot\css\app.css</TailwindCssInput>
+    <TailwindCssOutput>wwwroot\css\app.out.css</TailwindCssOutput>
   </PropertyGroup>
-
 </Project>

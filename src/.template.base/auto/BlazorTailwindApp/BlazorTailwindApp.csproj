@@ -4,11 +4,12 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <TailwindCssInput>wwwroot\css\app.css</TailwindCssInput>
+    <TailwindCssOutput>wwwroot\css\app.out.css</TailwindCssOutput>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorTailwindApp.Client\BlazorTailwindApp.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.0" />
   </ItemGroup>
-
 </Project>
