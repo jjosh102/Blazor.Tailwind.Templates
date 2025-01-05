@@ -1,0 +1,18 @@
+@inject ThemeManager ThemeManager
+
+<button @onclick="ToggleTheme" class="flex items-center px-4 py-2 rounded transition-colors duration-300 
+       bg-gray-200 text-black hover:bg-gray-300 dark:bg-gray-800 dark:text-white hover:dark:bg-gray-700">
+  @if (ThemeManager.CurrentTheme == "light")
+  {
+    <span>Light Mode</span>
+  }
+  else
+  {
+    <span>Dark Mode</span>
+  }
+</button>
+
+@code {
+  private void ToggleTheme() => ThemeManager.ToggleTheme();
+
+}

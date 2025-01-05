@@ -1,0 +1,33 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1 class="text-3xl font-semibold mb-4 dark:text-white">Counter</h1>
+
+<p role="status" class="text-lg mb-4 dark:text-gray-200">Current count: @currentCount</p>
+
+<button 
+    class="bg-blue-500 dark:bg-gray-700 
+           text-white dark:text-gray-100
+           py-2 px-4 
+           rounded
+           hover:bg-blue-600 dark:hover:bg-gray-600
+           active:bg-blue-700 dark:active:bg-gray-800
+           focus:outline-none 
+           focus:ring-2 focus:ring-blue-400 dark:focus:ring-gray-500
+           focus:ring-offset-2 dark:focus:ring-offset-gray-900
+           disabled:opacity-50 dark:disabled:opacity-40
+           shadow-sm dark:shadow-gray-900/50
+           transition-all duration-200"
+    @onclick="IncrementCount">
+    Click me
+</button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

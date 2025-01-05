@@ -1,0 +1,51 @@
+<div>
+  <div class="flex justify-between items-center p-4 md:hidden">
+    <span class="text-white dark:text-gray-200 text-lg font-bold">BlazorTailwindAppWithTheme</span>
+    <button class="text-white dark:text-gray-200 p-2 hover:bg-white/10 dark:hover:bg-gray-700 rounded-md"
+      @onclick="ToggleNavMenu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="p-4 space-y-4 @(isNavMenuOpen ? "block" : "hidden") md:block">
+    <NavLink href="" Match="NavLinkMatch.All"
+      class="flex items-center text-white dark:text-gray-200 hover:bg-white/10 dark:hover:bg-gray-700 p-2 rounded-md transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+      </svg>
+      Home
+    </NavLink>
+
+    <NavLink href="counter"
+      class="flex items-center text-white dark:text-gray-200 hover:bg-white/10 dark:hover:bg-gray-700 p-2 rounded-md transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
+        <path
+          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+      </svg>
+      Counter
+    </NavLink>
+
+    <NavLink href="weather"
+      class="flex items-center text-white dark:text-gray-200 hover:bg-white/10 dark:hover:bg-gray-700 p-2 rounded-md transition-colors">
+      <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z" />
+      </svg>
+      Weather
+    </NavLink>
+    
+    <ThemeToggle />
+  </nav>
+</div>
+
+@code {
+  private bool isNavMenuOpen = false;
+
+  private void ToggleNavMenu()
+  {
+    isNavMenuOpen = !isNavMenuOpen;
+  }
+}

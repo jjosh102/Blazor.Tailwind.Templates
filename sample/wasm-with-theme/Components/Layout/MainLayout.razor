@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page dark:bg-gray-900">
+    <aside class="sidebar bg-gradient-to-b from-blue-900 to-purple-900 dark:from-blue-950 dark:to-purple-950">
+        <NavMenu />
+    </aside>
+
+    <main class="flex-1">
+        <div class="top-row px-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank" class="hover:underline whitespace-nowrap text-gray-700 hover:text-gray-900 
+              dark:text-gray-200 dark:hover:text-white transition-colors">
+                About
+            </a>
+        </div>
+
+        <article class="content px-4 mt-4 dark:text-gray-200">
+            @Body
+        </article>
+    </main>
+</div>
