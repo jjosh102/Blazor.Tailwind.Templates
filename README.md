@@ -55,6 +55,6 @@ dotnet new blazortailwind --interactivity wasm --framework net9.0 -o MyApplicati
 dotnet new blazortailwind --interactivity wasm --framework "net8.0;net9.0" -o MyApplication
 ```
 
-### Sample Site with Theme
+### [Sample site with theme](https://jjosh102.github.io/Blazor.Tailwind.Templates/)
 
-You can view a sample site [here](https://jjosh102.github.io/Blazor.Tailwind.Templates/).
+
