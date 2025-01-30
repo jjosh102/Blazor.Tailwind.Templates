@@ -19,11 +19,9 @@
     <PackageProjectUrl>https://github.com/obaki102/Blazor.Tailwind.Templates</PackageProjectUrl>
     <RepositoryUrl>https://github.com/obaki102/Blazor.Tailwind.Templates</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
