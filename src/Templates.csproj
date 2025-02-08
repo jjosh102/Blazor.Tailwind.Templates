@@ -11,9 +11,7 @@
     <PackageType>Template</PackageType>
     <PackageId>Blazor.Tailwind.Templates</PackageId>
     <PackageTags>Blazor,Wasm,Tailwind, Web App </PackageTags>
-
-    <Company>Obaki</Company>
-    <Authors>Josh J Piluden</Authors>
+    <Authors>Joshua J Piluden</Authors>
     <Title>Blazor Tailwind Templates</Title>
     <Description>Blazor template using Tailwind CSS.</Description>
     <PackageProjectUrl>https://github.com/obaki102/Blazor.Tailwind.Templates</PackageProjectUrl>
@@ -22,12 +20,13 @@
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
+     <PackageReadmeFile>../README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\content\Nuget.png" Pack="true" Visible="false" PackagePath="" />
+     <None Include="..\README.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="**\.template.base\**\*" Exclude="**\bin\**;**\obj\**;**\.vs\**" />
     <Content Include="**\.template.config\**\*" Exclude="**\bin\**;**\obj\**;**\.vs\**" />
