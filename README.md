@@ -33,7 +33,7 @@ dotnet new blazortailwind --interactivity server -o MyApplication
 dotnet new blazortailwind --interactivity auto -o MyApplication
 ```
 
-> **Important Note for Auto Interactivity**: Since Tailwind is compiled on the server project, components in different projects like the client won't generate the needed CSS output. As a workaround, include all the styles in the BuildCss.razor component so they are compiled and available for the client components.
+> **Important Note for Auto Interactivity**: Since Tailwind is compiled on the server project, components in different projects like the client won't generate the needed CSS output. As a workaround, include all the styles in the `BuildCss.razor` component so they are compiled and available for the client components. Another option would be to create a centralized components project where Tailwind can build the CSS.
 
 #### Interactivity: wasm
 
