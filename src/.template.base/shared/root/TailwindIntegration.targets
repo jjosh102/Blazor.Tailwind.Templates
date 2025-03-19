@@ -1,10 +1,25 @@
 <Project>
     <PropertyGroup>
-        <TailwindToolsVersion Condition="'$(TailwindToolsVersion)' == ''">4.0.4</TailwindToolsVersion>
+        <TailwindToolsVersion Condition="'$(TailwindToolsVersion)' == ''">4.0.14</TailwindToolsVersion>
     </PropertyGroup>
 
-    <Target Name="TailwindBuild" BeforeTargets="CoreBuild" DependsOnTargets="GetTailwindInputs; AcquireTailwindTooling"
-            Inputs="@(TailwindFileInputs)" Outputs="$(TailwindCssOutput)">
+    <PropertyGroup>
+        <ProcessorArch>$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture)</ProcessorArch>
+        <IsArm64 Condition="'$(ProcessorArch)' == 'Arm64'">true</IsArm64>
+        <IsX64 Condition="'$(ProcessorArch)' == 'X64'">true</IsX64>
+    </PropertyGroup>
+
+    <Target Name="DetectMusl">
+        <Exec Command="test -f /etc/alpine-release" IgnoreExitCode="true">
+            <Output TaskParameter="ExitCode" PropertyName="AlpineLinuxExitCode" />
+        </Exec>
+        <PropertyGroup>
+            <IsMusl Condition="$(RuntimeIdentifier.Contains('musl'))">true</IsMusl>
+            <IsMusl Condition="'$(AlpineLinuxExitCode)' == '0'">true</IsMusl>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="TailwindBuild" BeforeTargets="CoreBuild" DependsOnTargets="GetTailwindInputs; AcquireTailwindTooling" Inputs="@(TailwindFileInputs)" Outputs="$(TailwindCssOutput)">
         <Exec Command="$(TailwindExePath) -i $(TailwindCssInput) -o $(TailwindCssOutput)" />
         <Touch Files="$(TailwindCssOutput)" />
         <ItemGroup>
@@ -16,12 +31,22 @@
         <DownloadFile SourceUrl="https://github.com/tailwindlabs/tailwindcss/releases/download/v$(TailwindToolsVersion)/$(TailwindExeName)" DestinationFolder="$(TailwindExeDir)" />
         <Exec Condition="!$([MSBuild]::IsOSPlatform('Windows'))" Command="chmod +x '$(TailwindExePath)'" />
     </Target>
-    
-    <Target Name="GetTailwindInputs">
+
+    <Target Name="GetTailwindInputs" DependsOnTargets="DetectMusl">
         <PropertyGroup>
-            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Windows'))">tailwindcss-windows-x64.exe</TailwindExeName>
-            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Linux'))">tailwindcss-linux-x64</TailwindExeName>
-            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('OSX'))">tailwindcss-macos-x64</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$(IsX64)' == 'true'">tailwindcss-windows-x64.exe</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$(IsArm64)' == 'true'">tailwindcss-windows-arm64.exe</TailwindExeName>
+
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(IsX64)' == 'true' AND '$(IsMusl)' != 'true'">tailwindcss-linux-x64</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(IsX64)' == 'true' AND '$(IsMusl)' == 'true'">tailwindcss-linux-x64-musl</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(IsArm64)' == 'true' AND '$(IsMusl)' != 'true'">tailwindcss-linux-arm64</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$(IsArm64)' == 'true' AND '$(IsMusl)' == 'true'">tailwindcss-linux-arm64-musl</TailwindExeName>
+
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('OSX')) AND '$(IsX64)' == 'true'">tailwindcss-macos-x64</TailwindExeName>
+            <TailwindExeName Condition="$([MSBuild]::IsOSPlatform('OSX')) AND '$(IsArm64)' == 'true'">tailwindcss-macos-arm64</TailwindExeName>
+
+            <TailwindExeName Condition="'$(TailwindExeName)' == ''">tailwindcss-linux-x64</TailwindExeName>
+
             <TailwindExeDir>$([System.IO.Path]::Combine($(MSBuildThisFileDirectory), ".tailwind", $(TailwindToolsVersion)))</TailwindExeDir>
             <TailwindExePath>$([System.IO.Path]::Combine($(TailwindExeDir), $(TailwindExeName)))</TailwindExePath>
         </PropertyGroup>
