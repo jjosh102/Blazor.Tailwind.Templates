@@ -1,0 +1,50 @@
+/* /Components/Layout/MainLayout.razor.rz.scp.css */
+.page[b-gx7czvqjh4] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main[b-gx7czvqjh4] {
+    flex: 1;
+}
+
+.top-row[b-gx7czvqjh4] {
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 640.98px) {
+    .top-row[b-gx7czvqjh4] {
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-gx7czvqjh4] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-gx7czvqjh4] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-gx7czvqjh4] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row[b-gx7czvqjh4], article[b-gx7czvqjh4] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
