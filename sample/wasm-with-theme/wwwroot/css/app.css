@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 /* inter-200 - latin */
 @font-face {
     font-display: swap;
