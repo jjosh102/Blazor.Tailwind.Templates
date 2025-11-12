@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      PUBLISH_FOLDER: sample/wasm-with-theme/bin/Release/net9.0/publish/wwwroot
+      PUBLISH_FOLDER: sample/wasm-with-theme/bin/Release/net10.0/publish/wwwroot
 
     name: Build and Deploy Job
     steps:
@@ -19,7 +19,7 @@ jobs:
       
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
    
       - name: Dotnet Publish
         run: dotnet publish sample/wasm-with-theme --configuration Release

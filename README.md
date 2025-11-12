@@ -43,18 +43,18 @@ dotnet new blazortailwind --interactivity wasm -o MyApplication
 
 ### Usage with Framework
 
-To specify the framework, use the `--framework` option. You can use `net8.0`, `net9.0`, or both `net8.0;net9.0` (*Note that this is only applicable if the interactivity is `wasm` for now*).
-
-```sh
-dotnet new blazortailwind --interactivity wasm --framework net8.0 -o MyApplication
-```
+To specify the framework, use the `--framework` option. You can use `net9.0`, `net10.0`, or both `net8.0;net9.0` (*Note that this is only applicable if the interactivity is `wasm` for now*).
 
 ```sh
 dotnet new blazortailwind --interactivity wasm --framework net9.0 -o MyApplication
 ```
 
 ```sh
-dotnet new blazortailwind --interactivity wasm --framework "net8.0;net9.0" -o MyApplication
+dotnet new blazortailwind --interactivity wasm --framework net10.0 -o MyApplication
+```
+
+```sh
+dotnet new blazortailwind --interactivity wasm --framework "net9.0;net10.0" -o MyApplication
 ```
 
 ### [Sample site with theme](https://jjosh102.github.io/Blazor.Tailwind.Templates/)
